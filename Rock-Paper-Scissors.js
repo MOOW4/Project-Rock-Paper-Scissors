@@ -45,12 +45,15 @@ function playRound(playerSelection, computerSelection) {
    }
 }
 
-function game() {
-   let score = 0;
 
-   for ( let i = 0; i < 5; i++){
-      const playerSelection = prompt("Rock/Paper/Scissors");
+   let score = 0;
+   const buttonsContainer = document.getElementById('buttons-container');
+   const button_rock = document.createElement('button');
+   button_rock.textContent = "Rock";
+   button_rock.addEventListener("click", function() {
+
       const computerSelection = getComputerChoice();
+      playerSelection = "rock";
       console.log(playerSelection, computerSelection);
 
       if((playRound(playerSelection, computerSelection)) === true){
@@ -63,55 +66,63 @@ function game() {
       else{
          console.log("Unfortunately, you lost this round!")
       }
-   }
-}
-game();
+   });
 
+   const button_paper = document.createElement('button');
+   button_paper.textContent = "Paper";
+   button_paper.addEventListener("click", function() {
 
-/*
-const playerSelection = "paper";
-const computerSelection = getComputerChoice();
-console.log(playerSelection, computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+      const computerSelection = getComputerChoice();
+      playerSelection = "paper";
+      console.log(playerSelection, computerSelection);
 
-
-if (playerSelection === computerSelection) {
-      return ("It's a tie!");
-   }
-else {
-      switch (computerSelection) {
-         case "rock":
-            switch(playerSelection){
-               case "paper":
-                  return ("Congratulations! You win!");
-                  break;
-               case "scissors":
-                  return ("Unfortunately, you loose!");
-                  break;
-            break;
-            }
-         case "paper":
-            switch(playerSelection){
-               case "rock":
-                  return ("Unfortunately, you loose!");
-                  break;
-               case "scissors":
-                  return ("Congratulations! You win!");
-                  break;
-                  
-            }
-            break;
-         case "scissors":
-            switch(playerSelection){
-               case "paper":
-                  return ("Unfortunately, you loose!");
-                  break;
-               case "rock":
-                  return ("Congratulations! You win!");
-                  break;
-                  
-            }
-            break;
+      if((playRound(playerSelection, computerSelection)) === true){
+         console.log("Congratulations! You won this round!");
+         score++;
       }
-   }
-*/
+      else if (playRound(playerSelection, computerSelection) == undefined) {
+         console.log("It's a tie!");
+      }
+      else{
+         console.log("Unfortunately, you lost this round!")
+      }
+   });
+
+   const button_scissors = document.createElement('button');
+   button_scissors.textContent = "Scissors";
+   button_scissors.addEventListener("click", function() {
+
+      const computerSelection = getComputerChoice();
+      playerSelection = "scissors";
+      console.log(playerSelection, computerSelection);
+
+      if((playRound(playerSelection, computerSelection)) === true){
+         console.log("Congratulations! You won this round!");
+         score++;
+      }
+      else if (playRound(playerSelection, computerSelection) == undefined) {
+         console.log("It's a tie!");
+      }
+      else{
+         console.log("Unfortunately, you lost this round!")
+      }
+   });
+
+   buttonsContainer.appendChild(button_rock);
+   buttonsContainer.appendChild(button_scissors);
+   buttonsContainer.appendChild(button_paper);
+
+      //const playerSelection = prompt("Rock/Paper/Scissors");
+      //console.log(playerSelection, computerSelection);
+      /*
+      if((playRound(playerSelection, computerSelection)) === true){
+         console.log("Congratulations! You won this round!");
+         score++;
+      }
+      else if (playRound(playerSelection, computerSelection) == undefined) {
+         console.log("It's a tie!");
+      }
+      else{
+         console.log("Unfortunately, you lost this round!")
+      }
+      */
